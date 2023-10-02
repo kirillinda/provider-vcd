@@ -1,0 +1,24 @@
+apiVersion: vcdnetworkroutedv2.crossplane.io/v1alpha1
+kind: RoutedV2
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vcdnetworkroutedv2/v1alpha1/routedv2
+  labels:
+    testing.upbound.io/example-name: nsxt-backed
+  name: nsxt-backed
+spec:
+  forProvider:
+    description: My routed Org VDC network backed by NSX-T
+    edgeGatewayId: ${data.vcd_nsxt_edgegateway.existing.id}
+    gateway: 1.1.1.1
+    name: nsxt-routed 1
+    org: my-org
+    prefixLength: 24
+    staticIpPool:
+    - endAddress: 1.1.1.20
+      startAddress: 1.1.1.10
+    - endAddress: 1.1.1.103
+      startAddress: 1.1.1.100
+
+---
+

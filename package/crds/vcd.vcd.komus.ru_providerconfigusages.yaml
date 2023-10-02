@@ -5,14 +5,14 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
-  name: providerconfigusages.template.upbound.io
+  name: providerconfigusages.vcd.vcd.komus.ru
 spec:
-  group: template.upbound.io
+  group: vcd.vcd.komus.ru
   names:
     categories:
     - crossplane
     - provider
-    - template
+    - vcd
     kind: ProviderConfigUsage
     listKind: ProviderConfigUsageList
     plural: providerconfigusages

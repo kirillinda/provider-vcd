@@ -15,7 +15,7 @@ import (
 
 	"github.com/upbound/upjet/pkg/terraform"
 
-	"github.com/upbound/upjet-provider-template/apis/v1beta1"
+	"github.com/kirillinda/provider-vcd/apis/v1beta1"
 )
 
 const (
@@ -24,7 +24,15 @@ const (
 	errGetProviderConfig    = "cannot get referenced ProviderConfig"
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
-	errUnmarshalCredentials = "cannot unmarshal template credentials as JSON"
+	errUnmarshalCredentials = "cannot unmarshal vcd credentials as JSON"
+	vcd_user                = "vcd_user"
+	vcd_password 			= "vcd_password"
+	auth_type				= "auth_type"
+	vcd_org					= "vcd_org"
+	vcd_vdc					= "vcd_vdc"
+	vcd_url					= "vcd_url"
+	vcd_max_retry_timeout	= "vcd_max_retry_timeout"
+	vcd_allow_unverified_ssl = "vcd_allow_unverified_ssl"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -63,10 +71,32 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		}
 
 		// Set credentials in Terraform provider configuration.
-		/*ps.Configuration = map[string]any{
-			"username": creds["username"],
-			"password": creds["password"],
-		}*/
+		ps.Configuration = map[string]any{}
+			if v, ok := creds[vcd_user]; ok {
+				ps.Configuration[vcd_user] = v
+			  }
+			if v, ok := creds[vcd_password]; ok {
+				ps.Configuration[vcd_password] = v
+			  }
+			if v, ok := creds[auth_type]; ok {
+				ps.Configuration[auth_type] = v
+			  }
+			if v, ok := creds[vcd_org]; ok {
+				ps.Configuration[vcd_org] = v
+			  }
+			if v, ok := creds[vcd_vdc]; ok {
+				ps.Configuration[vcd_vdc] = v
+			  }
+			if v, ok := creds[vcd_url]; ok {
+				ps.Configuration[vcd_url] = v
+			  }
+			if v, ok := creds[vcd_max_retry_timeout]; ok {
+				ps.Configuration[vcd_max_retry_timeout] = v
+			  }
+			if v, ok := creds[vcd_allow_unverified_ssl]; ok {
+				ps.Configuration[vcd_allow_unverified_ssl] = v
+			  }
+		
 		return ps, nil
 	}
 }
