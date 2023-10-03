@@ -4,7 +4,7 @@
 PROJECT_NAME ?= provider-vcd
 PROJECT_REPO ?= github.com/kirillinda/$(PROJECT_NAME)
 
-export TERRAFORM_VERSION ?= 1.2.1
+export TERRAFORM_VERSION ?= 1.5.7
 
 export TERRAFORM_PROVIDER_SOURCE := vmware/vcd
 export TERRAFORM_PROVIDER_REPO := https://github.com/vmware/terraform-provider-vcd
