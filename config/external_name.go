@@ -10,7 +10,13 @@ import "github.com/upbound/upjet/pkg/config"
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
 	// Import requires using a randomly generated ID from provider: nl-2e21sda
-	"vcd_network_routed_v2": config.IdentifierFromProvider,
+	"vcd_network_routed_v2":         config.IdentifierFromProvider,
+	"vcd_independent_disk":          config.IdentifierFromProvider,
+	"vcd_nsxt_firewall":             config.IdentifierFromProvider,
+	"vcd_vm":                        config.IdentifierFromProvider,
+	"vcd_vm_internal_disk":          config.IdentifierFromProvider,
+	"vcd_nsxt_network_dhcp":         config.IdentifierFromProvider,
+	"vcd_nsxt_network_dhcp_binding": config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

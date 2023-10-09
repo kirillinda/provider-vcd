@@ -10,7 +10,13 @@ import (
 
 	ujconfig "github.com/upbound/upjet/pkg/config"
 
+	"github.com/kirillinda/provider-vcd/config/independentdisk"
+	"github.com/kirillinda/provider-vcd/config/nsxtfirewall"
+	"github.com/kirillinda/provider-vcd/config/nsxtnetworkdhcp"
+	"github.com/kirillinda/provider-vcd/config/nsxtnetworkdhcpbinding"
 	"github.com/kirillinda/provider-vcd/config/vcdnetworkroutedv2"
+	"github.com/kirillinda/provider-vcd/config/vm"
+	"github.com/kirillinda/provider-vcd/config/vminternaldisk"
 )
 
 const (
@@ -37,6 +43,12 @@ func GetProvider() *ujconfig.Provider {
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
 		vcdnetworkroutedv2.Configure,
+		vminternaldisk.Configure,
+		vm.Configure,
+		nsxtnetworkdhcpbinding.Configure,
+		nsxtnetworkdhcp.Configure,
+		nsxtfirewall.Configure,
+		independentdisk.Configure,
 	} {
 		configure(pc)
 	}
