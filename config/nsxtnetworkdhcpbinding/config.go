@@ -1,4 +1,4 @@
-package vcdnetworkroutedv2
+package nsxtnetworkdhcpbinding
 
 import "github.com/upbound/upjet/pkg/config"
 

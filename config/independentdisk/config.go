@@ -1,12 +1,12 @@
-package vcdnetworkroutedv2
+package independentdisk
 
 import "github.com/upbound/upjet/pkg/config"
 
 // Configure configures individual resources by adding custom ResourceConfigurators.
 func Configure(p *config.Provider) {
-	p.AddResourceConfigurator("vcd_network_routed_v2", func(r *config.Resource) {
+	p.AddResourceConfigurator("vcd_independnt_disk", func(r *config.Resource) {
 		// We need to override the default group that upjet generated for
 		// this resource, which would be "github"
-		r.ShortGroup = "vcdnetworkroutedv2"
+		r.ShortGroup = "independentdisk"
 	})
 }
