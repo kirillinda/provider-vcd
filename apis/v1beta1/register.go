@@ -13,7 +13,7 @@ import (
 
 // Package type metadata.
 const (
-	Group   = "vcd.vcd.komus.ru"
+	Group   = "vcd.komus.ru"
 	Version = "v1beta1"
 )
 

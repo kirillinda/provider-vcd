@@ -5,9 +5,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.3
   creationTimestamp: null
-  name: providerconfigusages.vcd.vcd.komus.ru
+  name: providerconfigusages.vcd.komus.ru
 spec:
-  group: vcd.vcd.komus.ru
+  group: vcd.komus.ru
   names:
     categories:
     - crossplane
