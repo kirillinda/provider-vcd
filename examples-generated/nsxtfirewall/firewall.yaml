@@ -1,0 +1,20 @@
+apiVersion: nsxtfirewall.crossplane.io/v1alpha1
+kind: Firewall
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxtfirewall/v1alpha1/firewall
+  labels:
+    testing.upbound.io/example-name: testing
+  name: testing
+spec:
+  forProvider:
+    edgeGatewayId: ${data.vcd_nsxt_edgegateway.testing.id}
+    org: my-org
+    rule:
+    - action: ALLOW
+      direction: IN_OUT
+      ipProtocol: IPV4
+      name: allow all IPv4 traffic
+
+---
+

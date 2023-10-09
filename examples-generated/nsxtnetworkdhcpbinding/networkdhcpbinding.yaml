@@ -1,0 +1,47 @@
+apiVersion: nsxtnetworkdhcpbinding.crossplane.io/v1alpha1
+kind: NetworkDHCPBinding
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxtnetworkdhcpbinding/v1alpha1/networkdhcpbinding
+  labels:
+    testing.upbound.io/example-name: binding2
+  name: binding2
+spec:
+  forProvider:
+    bindingType: IPV4
+    description: DHCP binding description
+    dhcpV4Config:
+    - gatewayIpAddress: 7.1.1.233
+      hostname: non-existent
+    dnsServers:
+    - 7.1.1.242
+    - 7.1.1.243
+    ipAddress: 7.1.1.190
+    leaseTime: 3600
+    macAddress: 00:11:22:33:44:66
+    name: DHCP Binding
+    org: cloud
+    orgNetworkId: ${vcd_nsxt_network_dhcp.pools.id}
+
+---
+
+apiVersion: nsxtnetworkdhcp.crossplane.io/v1alpha1
+kind: NetworkDHCP
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxtnetworkdhcpbinding/v1alpha1/networkdhcpbinding
+  labels:
+    testing.upbound.io/example-name: pools
+  name: pools
+spec:
+  forProvider:
+    listenerIpAddress: 7.1.1.254
+    mode: NETWORK
+    org: cloud
+    orgNetworkId: ${vcd_network_isolated_v2.net1.id}
+    pool:
+    - endAddress: 7.1.1.110
+      startAddress: 7.1.1.100
+
+---
+

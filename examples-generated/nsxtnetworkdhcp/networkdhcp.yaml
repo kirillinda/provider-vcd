@@ -1,0 +1,39 @@
+apiVersion: nsxtnetworkdhcp.crossplane.io/v1alpha1
+kind: NetworkDHCP
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxtnetworkdhcp/v1alpha1/networkdhcp
+  labels:
+    testing.upbound.io/example-name: pools
+  name: pools
+spec:
+  forProvider:
+    orgNetworkId: ${vcd_network_routed_v2.parent-network.id}
+    pool:
+    - endAddress: 7.1.1.110
+      startAddress: 7.1.1.100
+    - endAddress: 7.1.1.112
+      startAddress: 7.1.1.111
+
+---
+
+apiVersion: vcdnetworkroutedv2.crossplane.io/v1alpha1
+kind: RoutedV2
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxtnetworkdhcp/v1alpha1/networkdhcp
+  labels:
+    testing.upbound.io/example-name: parent-network
+  name: parent-network
+spec:
+  forProvider:
+    edgeGatewayId: ${data.vcd_nsxt_edgegateway.existing.id}
+    gateway: 7.1.1.1
+    name: nsxt-routed-dhcp
+    prefixLength: 24
+    staticIpPool:
+    - endAddress: 7.1.1.20
+      startAddress: 7.1.1.10
+
+---
+

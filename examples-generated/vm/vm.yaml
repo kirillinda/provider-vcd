@@ -1,0 +1,21 @@
+apiVersion: vm.crossplane.io/v1alpha1
+kind: VM
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vm/v1alpha1/vm
+  labels:
+    testing.upbound.io/example-name: TestVm
+  name: testvm
+spec:
+  forProvider:
+    cpus: 2
+    memory: 2048
+    name: TestVm
+    network:
+    - ipAllocationMode: POOL
+      name: net-datacloud-r
+      type: org
+    vappTemplateId: ${data.vcd_catalog_vapp_template.photon-hw11.id}
+
+---
+

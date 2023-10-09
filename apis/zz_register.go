@@ -10,17 +10,29 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/kirillinda/provider-vcd/apis/v1alpha1"
+	v1alpha1 "github.com/kirillinda/provider-vcd/apis/independent/v1alpha1"
+	v1alpha1nsxtfirewall "github.com/kirillinda/provider-vcd/apis/nsxtfirewall/v1alpha1"
+	v1alpha1nsxtnetworkdhcp "github.com/kirillinda/provider-vcd/apis/nsxtnetworkdhcp/v1alpha1"
+	v1alpha1nsxtnetworkdhcpbinding "github.com/kirillinda/provider-vcd/apis/nsxtnetworkdhcpbinding/v1alpha1"
+	v1alpha1apis "github.com/kirillinda/provider-vcd/apis/v1alpha1"
 	v1beta1 "github.com/kirillinda/provider-vcd/apis/v1beta1"
 	v1alpha1vcdnetworkroutedv2 "github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1"
+	v1alpha1vm "github.com/kirillinda/provider-vcd/apis/vm/v1alpha1"
+	v1alpha1vminternaldisk "github.com/kirillinda/provider-vcd/apis/vminternaldisk/v1alpha1"
 )
 
 func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1nsxtfirewall.SchemeBuilder.AddToScheme,
+		v1alpha1nsxtnetworkdhcp.SchemeBuilder.AddToScheme,
+		v1alpha1nsxtnetworkdhcpbinding.SchemeBuilder.AddToScheme,
+		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
 		v1alpha1vcdnetworkroutedv2.SchemeBuilder.AddToScheme,
+		v1alpha1vm.SchemeBuilder.AddToScheme,
+		v1alpha1vminternaldisk.SchemeBuilder.AddToScheme,
 	)
 }
 

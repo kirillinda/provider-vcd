@@ -1,0 +1,21 @@
+apiVersion: vminternaldisk.crossplane.io/v1alpha1
+kind: InternalDisk
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vminternaldisk/v1alpha1/internaldisk
+  labels:
+    testing.upbound.io/example-name: disk1
+  name: disk1
+spec:
+  forProvider:
+    allowVmReboot: true
+    busNumber: 0
+    busType: sata
+    sizeInMb: "13333"
+    storageProfile: Development
+    unitNumber: 1
+    vappName: my-vapp
+    vmName: my-vm1
+
+---
+
