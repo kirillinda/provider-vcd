@@ -8,7 +8,7 @@ func Configure(p *config.Provider) {
 
 		r.ShortGroup = "nsxtnetworkdhcp"
 		r.References["vcdnetworkroutedv2"] = config.Reference{
-			Type: "github.com/myorg/provider-github/apis/vcdnetworkroutedv2/v1alpha1",
+			Type: "github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1",
 		}
 	})
 }

@@ -9,7 +9,7 @@ func Configure(p *config.Provider) {
 		// this resource, which would be "github"
 		r.ShortGroup = "independentdisk"
 		r.References["vm"] = config.Reference{
-			Type: "github.com/myorg/provider-github/apis/vm/v1alpha1",
+			Type: "github.com/kirillinda/provider-vcd/apis/vm/v1alpha1",
 		}
 	})
 }
