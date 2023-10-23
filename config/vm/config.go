@@ -10,5 +10,8 @@ func Configure(p *config.Provider) {
 		r.References["name"] = config.Reference{
 			Type: "github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1.RoutedV2",
 		}
+		r.References["name"] = config.Reference{
+			Type: "github.com/kirillinda/provider-vcd/apis/independent/v1alpha1.Disk",
+		}
 	})
 }

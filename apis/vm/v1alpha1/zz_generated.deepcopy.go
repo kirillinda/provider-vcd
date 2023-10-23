@@ -1125,6 +1125,16 @@ func (in *VMParameters) DeepCopyInto(out *VMParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.NameRef != nil {
+		in, out := &in.NameRef, &out.NameRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.NameSelector != nil {
+		in, out := &in.NameSelector, &out.NameSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Network != nil {
 		in, out := &in.Network, &out.Network
 		*out = make([]NetworkParameters, len(*in))

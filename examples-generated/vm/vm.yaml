@@ -10,7 +10,9 @@ spec:
   forProvider:
     cpus: 2
     memory: 2048
-    name: TestVm
+    nameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     network:
     - ipAllocationMode: POOL
       name: net-datacloud-r

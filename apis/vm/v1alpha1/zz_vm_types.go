@@ -578,8 +578,17 @@ type VMParameters struct {
 	MetadataEntry []MetadataEntryParameters `json:"metadataEntry,omitempty" tf:"metadata_entry,omitempty"`
 
 	// A name for the VM, unique within the vApp
+	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1.RoutedV2
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// Reference to a RoutedV2 in vcdnetworkroutedv2 to populate name.
+	// +kubebuilder:validation:Optional
+	NameRef *v1.Reference `json:"nameRef,omitempty" tf:"-"`
+
+	// Selector for a RoutedV2 in vcdnetworkroutedv2 to populate name.
+	// +kubebuilder:validation:Optional
+	NameSelector *v1.Selector `json:"nameSelector,omitempty" tf:"-"`
 
 	// A block to define network interface. Multiple can be used.
 	// +kubebuilder:validation:Optional
@@ -670,9 +679,8 @@ type VMStatus struct {
 type VM struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
-	Spec   VMSpec   `json:"spec"`
-	Status VMStatus `json:"status,omitempty"`
+	Spec              VMSpec   `json:"spec"`
+	Status            VMStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
