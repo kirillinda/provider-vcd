@@ -7,11 +7,8 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("vcd_vm", func(r *config.Resource) {
 
 		r.ShortGroup = "vm"
-		r.References["Name"] = config.Reference{
-			Type: "github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1.RoutedV2Parameters",
-		}
-		r.References["Name"] = config.Reference{
-			Type: "github.com/kirillinda/provider-vcd/apis/independent/v1alpha1.DiskObservation",
+		r.References["name"] = config.Reference{
+			Type: "github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1.RoutedV2",
 		}
 	})
 }
