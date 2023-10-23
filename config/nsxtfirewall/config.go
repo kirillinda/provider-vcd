@@ -8,7 +8,7 @@ func Configure(p *config.Provider) {
 
 		r.ShortGroup = "nsxtfirewall"
 		r.References["vcdnetworkroutedv2"] = config.Reference{
-			Type: "github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1",
+			Type: "github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1.RoutedV2",
 		}
 	})
 }
