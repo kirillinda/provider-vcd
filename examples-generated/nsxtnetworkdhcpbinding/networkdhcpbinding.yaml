@@ -18,7 +18,9 @@ spec:
     - 7.1.1.243
     ipAddress: 7.1.1.190
     leaseTime: 3600
-    macAddress: 00:11:22:33:44:66
+    macAddressSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     name: DHCP Binding
     org: cloud
     orgNetworkId: ${vcd_nsxt_network_dhcp.pools.id}

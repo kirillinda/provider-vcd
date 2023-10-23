@@ -7,7 +7,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("vcd_nsxt_network_dhcp_binding", func(r *config.Resource) {
 
 		r.ShortGroup = "nsxtnetworkdhcpbinding"
-		r.References["mac"] = config.Reference{
+		r.References["mac_address"] = config.Reference{
 			Type: "github.com/kirillinda/provider-vcd/apis/vm/v1alpha1.VM",
 		}
 	})

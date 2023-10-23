@@ -232,6 +232,16 @@ func (in *DiskParameters) DeepCopyInto(out *DiskParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.NameRef != nil {
+		in, out := &in.NameRef, &out.NameRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.NameSelector != nil {
+		in, out := &in.NameSelector, &out.NameSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.UnitNumber != nil {
 		in, out := &in.UnitNumber, &out.UnitNumber
 		*out = new(string)
@@ -491,6 +501,16 @@ func (in *NetworkParameters) DeepCopyInto(out *NetworkParameters) {
 		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
+	}
+	if in.NameRef != nil {
+		in, out := &in.NameRef, &out.NameRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.NameSelector != nil {
+		in, out := &in.NameSelector, &out.NameSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Type != nil {
 		in, out := &in.Type, &out.Type
@@ -1124,16 +1144,6 @@ func (in *VMParameters) DeepCopyInto(out *VMParameters) {
 		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
-	}
-	if in.NameRef != nil {
-		in, out := &in.NameRef, &out.NameRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.NameSelector != nil {
-		in, out := &in.NameSelector, &out.NameSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
 	}
 	if in.Network != nil {
 		in, out := &in.Network, &out.Network

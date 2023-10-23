@@ -149,8 +149,17 @@ type NetworkDHCPBindingParameters struct {
 
 	// MAC address used for binding
 	// MAC address of the DHCP binding
+	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/vm/v1alpha1.VM
 	// +kubebuilder:validation:Optional
 	MacAddress *string `json:"macAddress,omitempty" tf:"mac_address,omitempty"`
+
+	// Reference to a VM in vm to populate macAddress.
+	// +kubebuilder:validation:Optional
+	MacAddressRef *v1.Reference `json:"macAddressRef,omitempty" tf:"-"`
+
+	// Selector for a VM in vm to populate macAddress.
+	// +kubebuilder:validation:Optional
+	MacAddressSelector *v1.Selector `json:"macAddressSelector,omitempty" tf:"-"`
 
 	// Name of DHCP binding
 	// +kubebuilder:validation:Optional
@@ -197,7 +206,6 @@ type NetworkDHCPBinding struct {
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.bindingType)",message="bindingType is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.ipAddress)",message="ipAddress is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.leaseTime)",message="leaseTime is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.macAddress)",message="macAddress is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.orgNetworkId)",message="orgNetworkId is a required parameter"
 	Spec   NetworkDHCPBindingSpec   `json:"spec"`

@@ -10,12 +10,12 @@ spec:
   forProvider:
     cpus: 2
     memory: 2048
-    nameSelector:
-      matchLabels:
-        testing.upbound.io/example-name: example
+    name: TestVm
     network:
     - ipAllocationMode: POOL
-      name: net-datacloud-r
+      nameSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
       type: org
     vappTemplateId: ${data.vcd_catalog_vapp_template.photon-hw11.id}
 
