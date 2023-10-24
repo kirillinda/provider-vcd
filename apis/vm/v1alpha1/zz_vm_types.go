@@ -273,15 +273,15 @@ type NetworkParameters struct {
 	Mac *string `json:"mac,omitempty" tf:"mac,omitempty"`
 
 	// Name of the network this VM should connect to. Always required except for `type` `NONE`
-	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1.RoutedV2
+	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1.RoutedV2Observation
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Reference to a RoutedV2 in vcdnetworkroutedv2 to populate name.
+	// Reference to a RoutedV2Observation in vcdnetworkroutedv2 to populate name.
 	// +kubebuilder:validation:Optional
 	NameRef *v1.Reference `json:"nameRef,omitempty" tf:"-"`
 
-	// Selector for a RoutedV2 in vcdnetworkroutedv2 to populate name.
+	// Selector for a RoutedV2Observation in vcdnetworkroutedv2 to populate name.
 	// +kubebuilder:validation:Optional
 	NameSelector *v1.Selector `json:"nameSelector,omitempty" tf:"-"`
 

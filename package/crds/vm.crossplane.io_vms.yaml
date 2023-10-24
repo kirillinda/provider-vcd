@@ -406,7 +406,7 @@ spec:
                             to. Always required except for `type` `NONE`
                           type: string
                         nameRef:
-                          description: Reference to a RoutedV2 in vcdnetworkroutedv2
+                          description: Reference to a RoutedV2Observation in vcdnetworkroutedv2
                             to populate name.
                           properties:
                             name:
@@ -442,7 +442,7 @@ spec:
                           - name
                           type: object
                         nameSelector:
-                          description: Selector for a RoutedV2 in vcdnetworkroutedv2
+                          description: Selector for a RoutedV2Observation in vcdnetworkroutedv2
                             to populate name.
                           properties:
                             matchControllerRef:
