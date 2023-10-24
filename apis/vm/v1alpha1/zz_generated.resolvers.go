@@ -46,8 +46,8 @@ func (mg *VM) ResolveReferences(ctx context.Context, c client.Reader) error {
 			Reference:    mg.Spec.ForProvider.Network[i3].NameRef,
 			Selector:     mg.Spec.ForProvider.Network[i3].NameSelector,
 			To: reference.To{
-				List:    &v1alpha11.RoutedV2ObservationList{},
-				Managed: &v1alpha11.RoutedV2Observation{},
+				List:    &v1alpha11.RoutedV2List{},
+				Managed: &v1alpha11.RoutedV2{},
 			},
 		})
 		if err != nil {
