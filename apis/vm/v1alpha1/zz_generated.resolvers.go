@@ -11,6 +11,7 @@ import (
 	v1alpha1 "github.com/kirillinda/provider-vcd/apis/independent/v1alpha1"
 	v1alpha11 "github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1"
 	errors "github.com/pkg/errors"
+	resource "github.com/upbound/upjet/pkg/resource"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
@@ -24,7 +25,7 @@ func (mg *VM) ResolveReferences(ctx context.Context, c client.Reader) error {
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.Disk); i3++ {
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Disk[i3].Name),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractParamPath("name", true),
 			Reference:    mg.Spec.ForProvider.Disk[i3].NameRef,
 			Selector:     mg.Spec.ForProvider.Disk[i3].NameSelector,
 			To: reference.To{
@@ -42,7 +43,7 @@ func (mg *VM) ResolveReferences(ctx context.Context, c client.Reader) error {
 	for i3 := 0; i3 < len(mg.Spec.ForProvider.Network); i3++ {
 		rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network[i3].Name),
-			Extract:      reference.ExternalName(),
+			Extract:      resource.ExtractParamPath("name", true),
 			Reference:    mg.Spec.ForProvider.Network[i3].NameRef,
 			Selector:     mg.Spec.ForProvider.Network[i3].NameSelector,
 			To: reference.To{

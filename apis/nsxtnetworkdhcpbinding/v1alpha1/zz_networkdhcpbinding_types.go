@@ -33,8 +33,18 @@ type DHCPV4ConfigParameters struct {
 
 	// Hostname to be set for client
 	// Hostname for the DHCP client
+	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/vm/v1alpha1.VM
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("computer_name", true)
 	// +kubebuilder:validation:Optional
 	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
+
+	// Reference to a VM in vm to populate hostname.
+	// +kubebuilder:validation:Optional
+	HostnameRef *v1.Reference `json:"hostnameRef,omitempty" tf:"-"`
+
+	// Selector for a VM in vm to populate hostname.
+	// +kubebuilder:validation:Optional
+	HostnameSelector *v1.Selector `json:"hostnameSelector,omitempty" tf:"-"`
 }
 
 type DHCPV6ConfigObservation struct {
@@ -150,6 +160,7 @@ type NetworkDHCPBindingParameters struct {
 	// MAC address used for binding
 	// MAC address of the DHCP binding
 	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/vm/v1alpha1.VM
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("network.mac", true)
 	// +kubebuilder:validation:Optional
 	MacAddress *string `json:"macAddress,omitempty" tf:"mac_address,omitempty"`
 
@@ -175,8 +186,18 @@ type NetworkDHCPBindingParameters struct {
 	// here. It is more convenient to use reference to vcd_nsxt_network_dhcp ID because it makes sure
 	// that DHCP is enabled before configuring pools
 	// Parent Org VDC network ID
+	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1.RoutedV2
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("id", true)
 	// +kubebuilder:validation:Optional
 	OrgNetworkID *string `json:"orgNetworkId,omitempty" tf:"org_network_id,omitempty"`
+
+	// Reference to a RoutedV2 in vcdnetworkroutedv2 to populate orgNetworkId.
+	// +kubebuilder:validation:Optional
+	OrgNetworkIDRef *v1.Reference `json:"orgNetworkIdRef,omitempty" tf:"-"`
+
+	// Selector for a RoutedV2 in vcdnetworkroutedv2 to populate orgNetworkId.
+	// +kubebuilder:validation:Optional
+	OrgNetworkIDSelector *v1.Selector `json:"orgNetworkIdSelector,omitempty" tf:"-"`
 }
 
 // NetworkDHCPBindingSpec defines the desired state of NetworkDHCPBinding
@@ -207,7 +228,6 @@ type NetworkDHCPBinding struct {
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.ipAddress)",message="ipAddress is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.leaseTime)",message="leaseTime is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.orgNetworkId)",message="orgNetworkId is a required parameter"
 	Spec   NetworkDHCPBindingSpec   `json:"spec"`
 	Status NetworkDHCPBindingStatus `json:"status,omitempty"`
 }

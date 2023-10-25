@@ -8,10 +8,12 @@ func Configure(p *config.Provider) {
 
 		r.ShortGroup = "vm"
 		r.References["network.name"] = config.Reference{
-			Type: "github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1.RoutedV2",
+			Type:      "github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1.RoutedV2",
+			Extractor: `github.com/upbound/upjet/pkg/resource.ExtractParamPath("name", true)`,
 		}
 		r.References["disk.name"] = config.Reference{
-			Type: "github.com/kirillinda/provider-vcd/apis/independent/v1alpha1.Disk",
+			Type:      "github.com/kirillinda/provider-vcd/apis/independent/v1alpha1.Disk",
+			Extractor: `github.com/upbound/upjet/pkg/resource.ExtractParamPath("name", true)`,
 		}
 	})
 }

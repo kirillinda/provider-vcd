@@ -12,7 +12,9 @@ spec:
     description: DHCP binding description
     dhcpV4Config:
     - gatewayIpAddress: 7.1.1.233
-      hostname: non-existent
+      hostnameSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
     dnsServers:
     - 7.1.1.242
     - 7.1.1.243
@@ -23,7 +25,9 @@ spec:
         testing.upbound.io/example-name: example
     name: DHCP Binding
     org: cloud
-    orgNetworkId: ${vcd_nsxt_network_dhcp.pools.id}
+    orgNetworkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: pools
 
 ---
 

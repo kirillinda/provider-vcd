@@ -141,6 +141,7 @@ type DiskParameters struct {
 
 	// Independent disk name
 	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/independent/v1alpha1.Disk
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("name", true)
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
@@ -274,6 +275,7 @@ type NetworkParameters struct {
 
 	// Name of the network this VM should connect to. Always required except for `type` `NONE`
 	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1.RoutedV2
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("name", true)
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
