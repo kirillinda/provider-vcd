@@ -10,5 +10,13 @@ func Configure(p *config.Provider) {
 		r.References["mac_address"] = config.Reference{
 			Type: "github.com/kirillinda/provider-vcd/apis/vm/v1alpha1.VM",
 		}
+
+		r.References["dhcpV4Config.hostname"] = config.Reference{
+			Type: "github.com/kirillinda/provider-vcd/apis/vm/v1alpha1.VM",
+		}
+
+		r.References["orgNetworkId"] = config.Reference{
+			Type: "github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1.RoutedV2",
+		}
 	})
 }
