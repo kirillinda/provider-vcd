@@ -160,7 +160,7 @@ type NetworkDHCPBindingParameters struct {
 	// MAC address used for binding
 	// MAC address of the DHCP binding
 	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/vm/v1alpha1.VM
-	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("network.mac", true)
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("network[0].mac", true)
 	// +kubebuilder:validation:Optional
 	MacAddress *string `json:"macAddress,omitempty" tf:"mac_address,omitempty"`
 

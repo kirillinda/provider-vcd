@@ -42,7 +42,7 @@ func (mg *NetworkDHCPBinding) ResolveReferences(ctx context.Context, c client.Re
 	}
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.MacAddress),
-		Extract:      resource.ExtractParamPath("network.mac", true),
+		Extract:      resource.ExtractParamPath("network[0].mac", true),
 		Reference:    mg.Spec.ForProvider.MacAddressRef,
 		Selector:     mg.Spec.ForProvider.MacAddressSelector,
 		To: reference.To{

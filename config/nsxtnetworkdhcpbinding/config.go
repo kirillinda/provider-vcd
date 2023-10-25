@@ -9,7 +9,7 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = "nsxtnetworkdhcpbinding"
 		r.References["mac_address"] = config.Reference{
 			Type:      "github.com/kirillinda/provider-vcd/apis/vm/v1alpha1.VM",
-			Extractor: `github.com/upbound/upjet/pkg/resource.ExtractParamPath("network.mac", true)`,
+			Extractor: `github.com/upbound/upjet/pkg/resource.ExtractParamPath("network[0].mac", true)`,
 		}
 		r.References["org_network_id"] = config.Reference{
 			Type:      "github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1.RoutedV2",
