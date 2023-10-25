@@ -8,7 +8,9 @@ metadata:
   name: pools
 spec:
   forProvider:
-    orgNetworkId: ${vcd_network_routed_v2.parent-network.id}
+    orgNetworkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: parent-network
     pool:
     - endAddress: 7.1.1.110
       startAddress: 7.1.1.100

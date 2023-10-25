@@ -10,6 +10,7 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -178,6 +179,16 @@ func (in *NetworkDHCPParameters) DeepCopyInto(out *NetworkDHCPParameters) {
 		in, out := &in.OrgNetworkID, &out.OrgNetworkID
 		*out = new(string)
 		**out = **in
+	}
+	if in.OrgNetworkIDRef != nil {
+		in, out := &in.OrgNetworkIDRef, &out.OrgNetworkIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.OrgNetworkIDSelector != nil {
+		in, out := &in.OrgNetworkIDSelector, &out.OrgNetworkIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Pool != nil {
 		in, out := &in.Pool, &out.Pool

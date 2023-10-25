@@ -44,7 +44,9 @@ spec:
     listenerIpAddress: 7.1.1.254
     mode: NETWORK
     org: cloud
-    orgNetworkId: ${vcd_network_isolated_v2.net1.id}
+    orgNetworkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: net1
     pool:
     - endAddress: 7.1.1.110
       startAddress: 7.1.1.100

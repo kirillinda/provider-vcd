@@ -87,8 +87,18 @@ type NetworkDHCPParameters struct {
 
 	// ID of parent Org VDC Routed network.
 	// Parent Org VDC network ID
+	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/vcdnetworkroutedv2/v1alpha1.RoutedV2
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("id", true)
 	// +kubebuilder:validation:Optional
 	OrgNetworkID *string `json:"orgNetworkId,omitempty" tf:"org_network_id,omitempty"`
+
+	// Reference to a RoutedV2 in vcdnetworkroutedv2 to populate orgNetworkId.
+	// +kubebuilder:validation:Optional
+	OrgNetworkIDRef *v1.Reference `json:"orgNetworkIdRef,omitempty" tf:"-"`
+
+	// Selector for a RoutedV2 in vcdnetworkroutedv2 to populate orgNetworkId.
+	// +kubebuilder:validation:Optional
+	OrgNetworkIDSelector *v1.Selector `json:"orgNetworkIdSelector,omitempty" tf:"-"`
 
 	// One or more blocks to define DHCP pool ranges. Must not be set when
 	// mode=RELAY. See Pools and example for usage details.
@@ -149,9 +159,8 @@ type NetworkDHCPStatus struct {
 type NetworkDHCP struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.orgNetworkId)",message="orgNetworkId is a required parameter"
-	Spec   NetworkDHCPSpec   `json:"spec"`
-	Status NetworkDHCPStatus `json:"status,omitempty"`
+	Spec              NetworkDHCPSpec   `json:"spec"`
+	Status            NetworkDHCPStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
