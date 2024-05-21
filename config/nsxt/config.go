@@ -155,6 +155,18 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "NsxtNetworkDhcpBinding"
 		r.Version = version
+		r.References["mac_address"] = config.Reference{
+			Type:      "github.com/kirillinda/provider-vcd/apis/vcd/v1alpha1.Vm",
+			Extractor: `github.com/upbound/upjet/pkg/resource.ExtractParamPath("network[0].mac", true)`,
+		}
+		r.References["org_network_id"] = config.Reference{
+			Type:      "github.com/kirillinda/provider-vcd/apis/vcd/v1alpha1.NetworkRoutedV2",
+			Extractor: `github.com/upbound/upjet/pkg/resource.ExtractParamPath("id", true)`,
+		}
+		r.References["dhcp_v4_config.hostname"] = config.Reference{
+			Type:      "github.com/kirillinda/provider-vcd/apis/vcd/v1alpha1.Vm",
+			Extractor: `github.com/upbound/upjet/pkg/resource.ExtractParamPath("computer_name", true)`,
+		}
 	})
 
 	p.AddResourceConfigurator("vcd_nsxt_network_imported", func(r *config.Resource) {

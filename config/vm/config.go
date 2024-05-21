@@ -11,6 +11,14 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "Vm"
 		r.Version = version
+		r.References["network.name"] = config.Reference{
+			Type:      "github.com/kirillinda/provider-vcd/apis/vcd/v1alpha1.NetworkRoutedV2",
+			Extractor: `github.com/upbound/upjet/pkg/resource.ExtractParamPath("name", true)`,
+		}
+		r.References["disk.name"] = config.Reference{
+			Type:      "github.com/kirillinda/provider-vcd/apis/vcd/v1alpha1.IndependentDisk",
+			Extractor: `github.com/upbound/upjet/pkg/resource.ExtractParamPath("name", true)`,
+		}
 	})
 
 	p.AddResourceConfigurator("vcd_vm_affinity_rule", func(r *config.Resource) {
