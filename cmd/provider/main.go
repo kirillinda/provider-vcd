@@ -25,12 +25,12 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	"github.com/ankasoftco/provider-vcd/apis"
-	"github.com/ankasoftco/provider-vcd/apis/v1alpha1"
-	"github.com/ankasoftco/provider-vcd/config"
-	"github.com/ankasoftco/provider-vcd/internal/clients"
-	"github.com/ankasoftco/provider-vcd/internal/controller"
-	"github.com/ankasoftco/provider-vcd/internal/features"
+	"github.com/kirillinda/provider-vcd/apis"
+	"github.com/kirillinda/provider-vcd/apis/v1alpha1"
+	"github.com/kirillinda/provider-vcd/config"
+	"github.com/kirillinda/provider-vcd/internal/clients"
+	"github.com/kirillinda/provider-vcd/internal/controller"
+	"github.com/kirillinda/provider-vcd/internal/features"
 )
 
 func main() {

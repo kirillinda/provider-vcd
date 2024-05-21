@@ -1,4 +1,4 @@
-module github.com/ankasoftco/provider-vcd
+module github.com/kirillinda/provider-vcd
 
 go 1.19
 

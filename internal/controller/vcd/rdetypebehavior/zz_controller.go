@@ -18,8 +18,8 @@ import (
 	"github.com/upbound/upjet/pkg/terraform"
 	ctrl "sigs.k8s.io/controller-runtime"
 
-	v1alpha1 "github.com/ankasoftco/provider-vcd/apis/vcd/v1alpha1"
-	features "github.com/ankasoftco/provider-vcd/internal/features"
+	v1alpha1 "github.com/kirillinda/provider-vcd/apis/vcd/v1alpha1"
+	features "github.com/kirillinda/provider-vcd/internal/features"
 )
 
 // Setup adds a controller that reconciles RdeTypeBehavior managed resources.
