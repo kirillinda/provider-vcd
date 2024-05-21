@@ -29,8 +29,18 @@ type DHCPV4ConfigParameters struct {
 	GatewayIPAddress *string `json:"gatewayIpAddress,omitempty" tf:"gateway_ip_address,omitempty"`
 
 	// Hostname for the DHCP client
+	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/vcd/v1alpha1.Vm
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("computer_name", true)
 	// +kubebuilder:validation:Optional
 	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
+
+	// Reference to a Vm in vcd to populate hostname.
+	// +kubebuilder:validation:Optional
+	HostnameRef *v1.Reference `json:"hostnameRef,omitempty" tf:"-"`
+
+	// Selector for a Vm in vcd to populate hostname.
+	// +kubebuilder:validation:Optional
+	HostnameSelector *v1.Selector `json:"hostnameSelector,omitempty" tf:"-"`
 }
 
 type DHCPV6ConfigObservation struct {
@@ -122,8 +132,18 @@ type NsxtNetworkDhcpBindingParameters struct {
 	LeaseTime *float64 `json:"leaseTime,omitempty" tf:"lease_time,omitempty"`
 
 	// MAC address of the DHCP binding
+	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/vcd/v1alpha1.Vm
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("network[0].mac", true)
 	// +kubebuilder:validation:Optional
 	MacAddress *string `json:"macAddress,omitempty" tf:"mac_address,omitempty"`
+
+	// Reference to a Vm in vcd to populate macAddress.
+	// +kubebuilder:validation:Optional
+	MacAddressRef *v1.Reference `json:"macAddressRef,omitempty" tf:"-"`
+
+	// Selector for a Vm in vcd to populate macAddress.
+	// +kubebuilder:validation:Optional
+	MacAddressSelector *v1.Selector `json:"macAddressSelector,omitempty" tf:"-"`
 
 	// Name of DHCP binding
 	// +kubebuilder:validation:Optional
@@ -134,8 +154,18 @@ type NsxtNetworkDhcpBindingParameters struct {
 	Org *string `json:"org,omitempty" tf:"org,omitempty"`
 
 	// Parent Org VDC network ID
+	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/vcd/v1alpha1.NetworkRoutedV2
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("id", true)
 	// +kubebuilder:validation:Optional
 	OrgNetworkID *string `json:"orgNetworkId,omitempty" tf:"org_network_id,omitempty"`
+
+	// Reference to a NetworkRoutedV2 in vcd to populate orgNetworkId.
+	// +kubebuilder:validation:Optional
+	OrgNetworkIDRef *v1.Reference `json:"orgNetworkIdRef,omitempty" tf:"-"`
+
+	// Selector for a NetworkRoutedV2 in vcd to populate orgNetworkId.
+	// +kubebuilder:validation:Optional
+	OrgNetworkIDSelector *v1.Selector `json:"orgNetworkIdSelector,omitempty" tf:"-"`
 }
 
 // NsxtNetworkDhcpBindingSpec defines the desired state of NsxtNetworkDhcpBinding
@@ -165,9 +195,7 @@ type NsxtNetworkDhcpBinding struct {
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.bindingType)",message="bindingType is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.ipAddress)",message="ipAddress is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.leaseTime)",message="leaseTime is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.macAddress)",message="macAddress is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.name)",message="name is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="self.managementPolicy == 'ObserveOnly' || has(self.forProvider.orgNetworkId)",message="orgNetworkId is a required parameter"
 	Spec   NsxtNetworkDhcpBindingSpec   `json:"spec"`
 	Status NsxtNetworkDhcpBindingStatus `json:"status,omitempty"`
 }

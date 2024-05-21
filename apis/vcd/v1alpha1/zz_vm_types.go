@@ -140,8 +140,18 @@ type VmDiskParameters struct {
 	BusNumber *string `json:"busNumber" tf:"bus_number,omitempty"`
 
 	// Independent disk name
-	// +kubebuilder:validation:Required
-	Name *string `json:"name" tf:"name,omitempty"`
+	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/vcd/v1alpha1.IndependentDisk
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("name", true)
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// Reference to a IndependentDisk in vcd to populate name.
+	// +kubebuilder:validation:Optional
+	NameRef *v1.Reference `json:"nameRef,omitempty" tf:"-"`
+
+	// Selector for a IndependentDisk in vcd to populate name.
+	// +kubebuilder:validation:Optional
+	NameSelector *v1.Selector `json:"nameSelector,omitempty" tf:"-"`
 
 	// Unit number (slot) on the bus specified by BusNumber
 	// +kubebuilder:validation:Required
@@ -264,8 +274,18 @@ type VmNetworkParameters struct {
 	Mac *string `json:"mac,omitempty" tf:"mac,omitempty"`
 
 	// Name of the network this VM should connect to. Always required except for `type` `NONE`
+	// +crossplane:generate:reference:type=github.com/kirillinda/provider-vcd/apis/vcd/v1alpha1.NetworkRoutedV2
+	// +crossplane:generate:reference:extractor=github.com/upbound/upjet/pkg/resource.ExtractParamPath("name", true)
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// Reference to a NetworkRoutedV2 in vcd to populate name.
+	// +kubebuilder:validation:Optional
+	NameRef *v1.Reference `json:"nameRef,omitempty" tf:"-"`
+
+	// Selector for a NetworkRoutedV2 in vcd to populate name.
+	// +kubebuilder:validation:Optional
+	NameSelector *v1.Selector `json:"nameSelector,omitempty" tf:"-"`
 
 	// Network type to use: 'vapp', 'org' or 'none'. Use 'vapp' for vApp network, 'org' to attach Org VDC network. 'none' for empty NIC.
 	// +kubebuilder:validation:Required

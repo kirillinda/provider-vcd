@@ -82,7 +82,7 @@ spec:
                     description: Required if 'type' is IP_PREFIX
                     type: string
                   type:
-                    description: Type of allocation. One of `FLOATING_IP“, `IP_PREFIX`
+                    description: Type of allocation. One of `FLOATING_IP``, `IP_PREFIX`
                     type: string
                   usageState:
                     description: Can be set to 'USED_MANUAL' to mark the IP Allocation
@@ -310,7 +310,7 @@ spec:
                     description: Required if 'type' is IP_PREFIX
                     type: string
                   type:
-                    description: Type of allocation. One of `FLOATING_IP“, `IP_PREFIX`
+                    description: Type of allocation. One of `FLOATING_IP``, `IP_PREFIX`
                     type: string
                   usageState:
                     description: Can be set to 'USED_MANUAL' to mark the IP Allocation
