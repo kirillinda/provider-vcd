@@ -25,11 +25,14 @@ const (
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
 	errUnmarshalCredentials = "cannot unmarshal vcd credentials as JSON"
-)
-
-const (
-	keyUser     = "user"
-	keyPassword = "password"
+	user                    = "user"
+	password                = "password"
+	auth_type               = "auth_type"
+	org                     = "org"
+	vdc                     = "vdc"
+	url                     = "url"
+	max_retry_timeout       = "max_retry_timeout"
+	allow_unverified_ssl    = "allow_unverified_ssl"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -67,19 +70,32 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 			return ps, errors.Wrap(err, errUnmarshalCredentials)
 		}
 
-		ps.Configuration = map[string]interface{}{}
-		if v, ok := creds[keyUser]; ok {
-			ps.Configuration[keyUser] = v
+		ps.Configuration = map[string]any{}
+		if v, ok := creds[user]; ok {
+			ps.Configuration[user] = v
 		}
-		if v, ok := creds[keyPassword]; ok {
-			ps.Configuration[keyPassword] = v
+		if v, ok := creds[password]; ok {
+			ps.Configuration[password] = v
+		}
+		if v, ok := creds[auth_type]; ok {
+			ps.Configuration[auth_type] = v
+		}
+		if v, ok := creds[org]; ok {
+			ps.Configuration[org] = v
+		}
+		if v, ok := creds[vdc]; ok {
+			ps.Configuration[vdc] = v
+		}
+		if v, ok := creds[url]; ok {
+			ps.Configuration[url] = v
+		}
+		if v, ok := creds[max_retry_timeout]; ok {
+			ps.Configuration[max_retry_timeout] = v
+		}
+		if v, ok := creds[allow_unverified_ssl]; ok {
+			ps.Configuration[allow_unverified_ssl] = v
 		}
 
-		// Set credentials in Terraform provider configuration.
-		/*ps.Configuration = map[string]any{
-			"username": creds["username"],
-			"password": creds["password"],
-		}*/
 		return ps, nil
 	}
 }
