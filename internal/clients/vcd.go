@@ -33,6 +33,8 @@ const (
 	url                     = "url"
 	max_retry_timeout       = "max_retry_timeout"
 	allow_unverified_ssl    = "allow_unverified_ssl"
+	api_token               = "api_token"
+	token                   = "token"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -94,6 +96,12 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		}
 		if v, ok := creds[allow_unverified_ssl]; ok {
 			ps.Configuration[allow_unverified_ssl] = v
+		}
+		if v, ok := creds[api_token]; ok {
+			ps.Configuration[api_token] = v
+		}
+		if v, ok := creds[token]; ok {
+			ps.Configuration[token] = v
 		}
 
 		return ps, nil
